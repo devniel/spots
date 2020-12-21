@@ -1,0 +1,18 @@
+apiVersion: skaffold/v2beta8
+kind: Config
+metadata:
+  name: spots
+build:
+  artifacts:
+  - image: ubuntu-vm.registry.local/spots-api
+    context: .
+    docker:
+      target: spots-api
+  - image: ubuntu-vm.registry.local/spots-ui
+    context: .
+    docker:
+      target: spots-ui
+deploy:
+  kubectl:
+    manifests:
+    - k8s.yml

@@ -1,0 +1,23 @@
+version: '3.4'
+services:
+  spots-api:
+    container_name: spots-api
+    build:
+      context: .
+      target: spots-api
+    image: ubuntu-vm.registry.local/spots-api
+    networks:
+      custom-network:
+  spots-ui:
+    container_name: spots-ui
+    build:
+      context: .
+      target: spots-ui
+    image: ubuntu-vm.registry.local/spots-ui
+    ports:
+      - 80:80
+      - 3333:3333
+    networks:
+      custom-network:
+networks:
+  custom-network:
