@@ -1,22 +1,22 @@
 # Spots
 
-An example monorepo project with local kubernetes deployment.
+An example monorepo project with local kubernetes deployment done on weekends since July until mid November 2020.
 
-(This steps only apply to my environment)
+(These steps only apply to my environment, a guide will be publish once my blog engine is updated)
 
-Before running, start the Ubuntu server hosted on Hyper-V, minikube starts automatically, otherwise run the following command:
+Before running, start the Ubuntu Server hosted on Hyper-V, minikube will start automatically, otherwise run the following command:
 
 ```
 minikube start --insecure-registry "0.0.0.0/0"
 ```
 
-Start the proxy that serves minikube on the port 8001 of the Ubuntu server.
+Start the proxy that serves minikube on the port 8001 of the Ubuntu Server:
 
 ```
 kubectl proxy --address='0.0.0.0' --disable-filter=true
 ```
 
-Expose the local registry server
+Expose the local registry server:
 
 ```
  kubectl port-forward -n kube-system $(kubectl get po -n kube-system | grep registry-wnppn | \awk '{print $1;}') 5000:5000 --address 0.0.0.0
